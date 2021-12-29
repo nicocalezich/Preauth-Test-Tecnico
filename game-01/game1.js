@@ -9,22 +9,19 @@ findSubset(array: Integer[], n: Integer)
 const findSubset = (array, n) => {
     if (!array.length || !n) return;
     let i = 0;
-    let j;
     let found = false;
     let subset = [];
     while (i < array.length && !found) {
-        j = 0;
-        while (j < array.length && !found) {
-            if ((array[i] + array[j]) == n) {
-                found = true;
-                subset = [array[i], array[j]];
-            } else {
-                j++;
-            }
+        if (array.indexOf(n - array[i]) != -1) {
+            found = true;
+            subset = [array[i], array[array.indexOf(n - array[i])]]
         }
-        i++;
+        else {
+            i++;
+        }
     }
-    return subset;
+    return subset
 }
 
 console.log(findSubset([2, 5, 8, 14, 0], 10))
+
